@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">Settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="switchTabs('/tablinks/home')">
+        <ion-icon name="arrow-back" color="secondary" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="ion-justify-content-center ion-padding-vertical">
+    <ion-button (click)="clearData()" color="danger">Clear All Data</ion-button>
+  </ion-row>
+</ion-content>

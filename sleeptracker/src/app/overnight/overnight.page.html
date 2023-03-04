@@ -1,0 +1,118 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title color="primary">
+      Sleep Tracker
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <!-- if the user hasn't submitted a form yet, show form-->
+  <div *ngIf="!submitted">
+    <div>
+        <ion-title size="large" class="ion-text-center" color="primary">Log overnight sleep</ion-title>
+        <div class="divider"></div>
+      <ion-col class="time-column">
+        <ion-icon name="bed-outline" size="large" color="secondary" class="ion-padding-vertical"></ion-icon>
+        <ion-label color="secondary" class="ion-text-center">
+          <h2>What time did you sleep?</h2>
+        </ion-label>
+        <ion-text color="secondary">
+          <p>{{bedTimeValue}}</p>
+        </ion-text>
+        <ion-button id="bedtime" color="secondary" class="ion-padding-bottom">Change Time</ion-button>
+        <ion-popover trigger="bedtime">
+          <ng-template>
+            <ion-datetime presentation="time" displayFormat="h:mm" locale="en-US" [(ngModel)]="bedTime"
+              color="tertiary"></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-col>
+
+      <div class="ion-padding-vertical"></div>
+
+      <ion-col class="time-column">
+        <ion-icon name="alarm" size="large" color="secondary" class="ion-padding-vertical"></ion-icon>
+        <ion-label color="secondary" class="ion-text-center">
+          <h2>What time did you wake up?</h2>
+        </ion-label>
+        <ion-text color="secondary">
+          <p>{{wakeupTimeValue}}</p>
+        </ion-text>
+        <ion-button id="wakeuptime" color="secondary" class="ion-padding-bottom">Change Time</ion-button>
+        <ion-popover trigger="wakeuptime">
+          <ng-template>
+            <ion-datetime presentation="time" displayFormat="h:mm" locale="en-US" [(ngModel)]="wakeupTime"
+              color="tertiary"></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-col>
+    </div>
+
+    <div class="ion-padding-vertical"></div>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-button (click)="onSubmit()" class="ion-padding-vertical">Submit</ion-button>
+    </ion-row>
+  </div>
+
+
+  <!-- if user submitted form, show past data -->
+  <div *ngIf="submitted">
+
+    <ion-title size="large" color="primary" class="ion-text-center">Recent Sleepiness Data</ion-title>
+    <div class="divider"></div>
+    
+    <ion-row class="ion-justify-content-center">
+      <ion-text color="secondary" class="ion-padding-end">
+        <h3>Average: </h3>
+      </ion-text>
+      <ion-text color="primary">
+        <h3>{{overnightAverage}}</h3>
+      </ion-text>
+      <ion-text color="primary">
+      </ion-text>
+    </ion-row>
+
+
+    <ion-list>
+      <ion-item>
+        <ion-row class="data-row">
+          <ion-col size="6" class="half-col">
+            <ion-text color="secondary">
+              <p class="ion-padding-horizontal">Duration</p>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6" class="ion-padding-horizontal col half-col">
+            <ion-text color="secondary">
+              <p class="small-text">Date</p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+      <div *ngFor="let data of allOvernightDataReverse">
+        <ion-item>
+          <ion-row >
+            <ion-col size="6" class="half-col">
+              <ion-text color="primary">
+                <p class="ion-padding-horizontal">{{data.summaryString()}}</p>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6" class="half-col">
+              <ion-text color="secondary">
+                <p class="ion-padding-horizontal">{{data.dateString()}}</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-text color="secondary">
+          </ion-text>
+          <ion-text color="secondary">
+          </ion-text>
+        </ion-item>
+      </div>
+    </ion-list>
+  </div>
+
+
+</ion-content>

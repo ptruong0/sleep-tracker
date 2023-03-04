@@ -1,20 +1,43 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Sleep Tracker 
+    <ion-title color="primary">
+      Sleep Tracker
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="switchTabs('/settings')">
+        <ion-icon name="settings" color="secondary" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Sleep Tracker</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-title class="ion-text-center" color="primary">
+    <h1>Good {{timeOfDay}}!</h1>
+  </ion-title>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="divider"></div>
+
+  <div class="column">
+    <ion-icon name="moon" size="large" color="secondary" class="ion-padding-vertical"></ion-icon>
+    <ion-text class="ion-text-center ion-padding-horizontal instructions" color="secondary">
+      <h3>To record your sleep and view your sleeping trends, visit the Overnight tab.</h3>
+    </ion-text>
+    <ion-button (click)="switchTabs('/tablinks/overnight')">Log sleep</ion-button>
+
+    <div class="ion-padding-vertical"></div>
+    <ion-icon name="sunny" size="large" color="secondary" class="ion-padding-vertical"></ion-icon>
+  
+    <ion-text class="ion-text-center ion-padding-horizontal instructions" color="secondary">
+      <h3>To track your sleepiness throughout the day and view past records, visit the Daytime tab.</h3>
+    </ion-text>
+    <ion-button (click)="switchTabs('tablinks/daytime')">Log sleepiness</ion-button>
+
+    <div class="divider"></div>
+
   </div>
+  <div class="divider"></div>
+
+  
+
 </ion-content>

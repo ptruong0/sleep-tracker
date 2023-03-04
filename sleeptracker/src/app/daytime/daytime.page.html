@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">Sleep Tracker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding-vertical"></div>
+  <ion-title size="large" class="ion-text-center" color="primary">Log sleepiness</ion-title>
+
+  <div class="ion-padding-horizontal">
+    <ion-range min="1" max="7" (ionChange)="onSliderChange()" [(ngModel)]="sliderValue">
+      <ion-icon slot="start" name="flash" color="secondary"></ion-icon>
+      <ion-icon slot="end" name="cloudy-night" color="secondary"></ion-icon>
+    </ion-range>
+    <ion-row class="ion-justify-content-between">
+      <ion-text color="secondary">
+        Awake
+      </ion-text>
+      <ion-text color="secondary">
+        Sleepy
+      </ion-text>
+    </ion-row>
+  </div>
+
+  <ion-text class="ion-text-center" color="secondary">
+    <p>Level {{sliderValue}}:</p>
+  </ion-text>
+  <ion-text color="primary" class="ion-text-center">
+    <p class="ion-margin-horizontal">{{sliderDescription}}</p>
+  </ion-text>
+  <ion-row class="ion-justify-content-center">
+    <ion-button (click)="onSubmit()">Submit</ion-button>
+  </ion-row>
+
+  <div class="ion-padding-vertical"></div>
+  <div class="divider"></div> 
+
+  <ion-title size="large" class="ion-text-center ion-padding-vertical" color="primary">Recent Sleepiness Data</ion-title>
+
+  <ion-row class="ion-justify-content-center">
+    <ion-text color="secondary" class="ion-padding-end">
+      <h3>Average: </h3>
+    </ion-text>
+    <ion-text color="primary">
+      <h3>{{sleepinessAverage}}</h3>
+    </ion-text>
+    <ion-text color="primary">
+
+    </ion-text>
+  </ion-row>
+      
+  <ion-list>
+    <ion-item>
+      <ion-row class="data-row">
+        <ion-col size="3">
+          <ion-text color="secondary">
+            <p class="ion-padding-horizontal">Level</p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="9" class="ion-padding-horizontal col">
+          <ion-text color="secondary">
+            <p class="small-text">Description</p>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div *ngFor="let data of allSleepinessDataReverse">
+      <ion-item>
+        <ion-row class="data-row">
+          <ion-col size="3">
+            <ion-text color="primary">
+              <h1 class="ion-padding-horizontal">{{data.summaryString()[0]}}</h1>
+            </ion-text>
+          </ion-col>
+          <ion-col size="9" class="ion-padding-horizontal col">
+            <ion-text color="secondary">
+              <p class="small-text description">{{data.summaryString().slice(3)}}</p>
+            </ion-text>
+            <ion-text color="secondary">
+              <p class="small-text">{{data.dateString()}}</p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

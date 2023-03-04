@@ -24,3 +24,40 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+ion-button {
+  --border-radius: 2em !important;
+  --padding-top: 1.2em !important;
+  --padding-bottom: 1.2em !important;
+  --padding-start: 1.5em !important;
+  --padding-end: 1.5em !important;
+  text-transform: none;
+  font-weight: 500;
+}
+
+ion-title {
+  font-weight: bold;
+}
+
+ion-item {
+  --border-color: var(--ion-color-secondary);
+  --padding-start: 0;
+}
+
+.divider {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-top: 1px solid var(--ion-color-secondary);
+}
+
+ion-toast.success-toast {
+  --background: var(--ion-color-secondary) ;
+  --color: var(--ion-background-color);
+}
+
+button.alert-button.alert-btn {
+  border-radius: 2em;
+  background-color: var(--ion-background-color);
+  color: var(--ion-color-primary);
+}

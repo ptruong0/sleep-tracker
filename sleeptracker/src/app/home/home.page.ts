@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { SleepService } from '../services/sleep.service';
-import { SleepData } from '../data/sleep-data';
-import { OvernightSleepData } from '../data/overnight-sleep-data';
-import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,17 +7,25 @@ import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  timeOfDay: string = '';
 	
-  constructor(public sleepService:SleepService) {
+  constructor(private router: Router) {
 	}
 
 	ngOnInit() {
-		console.log(this.allSleepData);
+    var curHr = new Date().getHours();
+    
+    // return time of day for greeting
+    if (curHr < 12) {
+      this.timeOfDay = "morning";
+    } else if (curHr < 18) {
+      this.timeOfDay = "afternoon";
+    } else {
+      this.timeOfDay = "evening";
+    }
 	}
 
-	/* Ionic doesn't allow bindings to static variables, so this getter can be used instead. */
-	get allSleepData() {
-		return SleepService.AllSleepData;
-	}
-
+  switchTabs(route: string) {
+    this.router.navigateByUrl(route);
+  }
 }

@@ -1,3 +1,10 @@
+ion-datetime {
+  --ion-background-color: #071836;
+}
+::ng-def ion-picker-column-internal {
+  --background: var(--ion-background-color);
+}
+
 #container {
   text-align: center;
 
@@ -24,4 +31,17 @@
 
 #container a {
   text-decoration: none;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.instructions {
+  max-width: 100vw;
+  margin: 0 2em;
+  overflow: auto;
 }
